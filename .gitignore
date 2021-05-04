@@ -1,0 +1,4 @@
+.terraform
+/content-deploying-to-aws-ansible-terraform
+.vscode
+kubeconfig_cluster
