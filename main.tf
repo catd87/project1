@@ -13,8 +13,7 @@ terraform {
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
   name = var.vpc_prod
-  cidr = var.vpc_cidr
-  #aws_region = var.aws_region  
+  cidr = var.vpc_cidr  
   azs             = var.az_usw
   private_subnets = var.subn_private
   public_subnets = var.subn_public
