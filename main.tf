@@ -18,6 +18,6 @@ module "eks" {
   manage_aws_auth = false
 
   depends_on = [
-    module.vpc_prod
+    module.vpc
       ]
 }
