@@ -37,5 +37,5 @@ jobs:
     - name: Terraform  Exec
       run: |
         export ENV=$(echo $GITHUB_REF | cut -d '/' -f 3)
-        export AWS_REGION=us-west-2
+        export AWS_REGION=us-east-1
         bash commandos.sh                                                                                                 
