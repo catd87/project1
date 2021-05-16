@@ -1,22 +1,24 @@
 provider "aws" {
   region = var.region
 }
+
 terraform {
   backend "s3" {
-    bucket = "storage-state"
-    key    = "terraform.tfstate"
-    region = "us-west-2"
+   
   }
 }
 
+data "aws_availability_zones" "available" {
+ state= "available"
+ }
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  name = var.vpc_prod
-  cidr = var.vpc_cidr  
-  azs             = var.az_usw
+  name            = var.vpc_prod
+  cidr            = var.vpc_cidr  
+  azs             = data.aws_availability_zones.available.names
   private_subnets = var.subn_private
-  public_subnets = var.subn_public
+  public_subnets  = var.subn_public
   
   enable_nat_gateway = true
   enable_vpn_gateway = true
@@ -50,7 +52,7 @@ module "eks" {
       max_capacity     = 2
       min_capaicty     = 2
  
-      instance_type = "t2.small"
+      instance_type = "t2.micro"
     }
   }
   manage_aws_auth = false
