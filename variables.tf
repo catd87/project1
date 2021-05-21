@@ -1,8 +1,10 @@
-variable "vpc_prod" {
+variable "vpcname" {
   type = string
-  default = "vpc_prod"
+  default = "vpc_name"
 }
-
+variable "env" {
+  type = string
+  }
 variable "cluster_name" {
   type = string
   default = "cluster"
