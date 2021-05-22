@@ -14,7 +14,7 @@ data "aws_availability_zones" "available" {
 
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  name            = var.vpc_prod
+  name            = "${var.env}-${var.vpcname}"
   cidr            = var.vpc_cidr  
   azs             = data.aws_availability_zones.available.names
   private_subnets = var.subn_private
@@ -40,7 +40,7 @@ output "vpc" {
 
 module "eks" {
   source = "terraform-aws-modules/eks/aws"
-  cluster_name = var.cluster_name
+  cluster_name = "${var.env}-${var.cluster_name}"
   vpc_id       = module.vpc.vpc_id
   subnets      = module.vpc.public_subnets
   cluster_version = var.cluster_version
